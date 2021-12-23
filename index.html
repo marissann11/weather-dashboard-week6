@@ -10,7 +10,32 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
+    <!--Header "Weather Dashboard"-->
+    <header class="hero">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <!--Column to left with search box ("Search for city" and input) and then previous citites searched populate under as buttons-->
+    <main class="flex-row justify-space-between">
+    <div class="col-12 col-md-4">
+        <div class="card">
+            <h3 class="card-header">Search for city</h3>
+            <form class="card-body">
+                <label class="form-label">City</label>
+                <input type="text" class="form-input"/>
+                <button type="submit" class="btn">Get City</button>
+            </form>
+        </div>
+        <div>
+            <!--Div to populate with previous searches-->
+        </div>
+    </div>
+    <!--Row with searched city's name and current weather information spaning rest of page-->
     
+
+    <!--Underneath full row, 5 day forecast populated with cards for each one-->
+    </main>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
