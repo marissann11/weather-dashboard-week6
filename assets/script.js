@@ -6,6 +6,7 @@ let forecastZone = document.querySelector("#forecast-card");
 submitButtonEl.addEventListener("click", getWeather);
 
 async function getWeather(event) {
+  // why arent you working anymore???
   let weatherContainerEl = document.querySelector(".weather-container");
   if (weatherContainerEl) {
     weatherContainerEl.remove();
@@ -18,10 +19,12 @@ async function getWeather(event) {
   const res = await response.json();
 
   let iconUrl = `https://openweathermap.org/img/w/${res.weather[0].icon}.png`;
+  let currentDate = res.dt * 1000;
 
   const cardContainer = document.createElement("div");
   const cardBody = document.createElement("div");
   const cardTitle = document.createElement("h4");
+  const cardDate = document.createElement("h4");
   const cardIcon = document.createElement("img");
   const cardTemp = document.createElement("p");
   const cardWind = document.createElement("p");
@@ -30,19 +33,20 @@ async function getWeather(event) {
   cardContainer.setAttribute("class", "card weather-container");
   cardBody.setAttribute("class", "card-body");
   cardBody.setAttribute("id", "card-body");
-  cardTitle.setAttribute("class", "card-title");
+  cardTitle.setAttribute("class", "card-title, text-capitalize");
   cardIcon.setAttribute("src", iconUrl);
   cardTemp.setAttribute("class", "card-text");
   cardWind.setAttribute("class", "card-text");
   cardHumidity.setAttribute("class", "card-text");
 
   cardTitle.textContent = cityName;
+  cardDate.textContent = new Date(currentDate).toLocaleDateString();
   cardTemp.textContent = `Temp: ${res.main.temp} °F`;
   cardWind.textContent = `Wind: ${res.wind.speed} MPH`;
   cardHumidity.textContent = `Humidity: ${res.main.humidity} %`;
 
   cardContainer.append(cardBody);
-  cardTitle.append(cardIcon);
+  cardTitle.append(cardDate, cardIcon);
   cardBody.append(cardTitle, cardTemp, cardWind, cardHumidity);
   cardZone.append(cardContainer);
 
@@ -62,6 +66,7 @@ async function getUvi(lon, lat) {
   cardBody.append(cardUvi);
 }
 async function getFiveDay(lon, lat) {
+  // NEED A WAY TO DO THIS THAT WILL ACTUALLY WORK
   let forecastContainerEl = document.querySelector(".forecast-container");
   if (forecastContainerEl) {
     forecastContainerEl.remove();
@@ -73,8 +78,11 @@ async function getFiveDay(lon, lat) {
 
   for (i = 0; i < 5; i++) {
     let iconUrl = `https://openweathermap.org/img/w/${res.daily[i].weather[0].icon}.png`;
+    // NEED A WAY TO MAKE THIS START ON 1 NOT 0 IN ARRAY
+    let dateTitle = res.daily[i].dt * 1000
 
     const dailyContainer = document.createElement("div");
+    const dailyDate = document.createElement('h4');
     const dailyBody = document.createElement("div");
     const dailyIcon = document.createElement("img");
     const dailyTemp = document.createElement("p");
@@ -83,17 +91,21 @@ async function getFiveDay(lon, lat) {
 
     dailyContainer.setAttribute("class", "card forecast-container");
     dailyBody.setAttribute("class", "card-body");
+    dailyDate.setAttribute("class", "card-title");
     dailyIcon.setAttribute("src", iconUrl);
     dailyTemp.setAttribute("class", "card-text");
     dailyWind.setAttribute("class", "card-text");
     dailyHumidity.setAttribute("class", "card-text");
 
+    dailyDate.textContent = new Date(dateTitle).toLocaleDateString();
     dailyTemp.textContent = `Temp: ${res.daily[i].temp.day} °F`
     dailyWind.textContent = `Wind: ${res.daily[i].wind_speed} MPH`
     dailyHumidity.textContent = `Humidity: ${res.daily[i].humidity} %`
 
     dailyContainer.append(dailyBody);
-    dailyBody.append(dailyIcon, dailyTemp, dailyWind, dailyHumidity);
+    dailyBody.append(dailyDate, dailyIcon, dailyTemp, dailyWind, dailyHumidity);
     forecastZone.append(dailyContainer);
   }
 }
+
+// btn-secondary  for previous search buttons 

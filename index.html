@@ -15,15 +15,14 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <!--Header "Weather Dashboard"-->
     <header class="hero">
-      <h1>Weather Dashboard</h1>
+      <h1 class="text-light text-center p-3">Weather Dashboard</h1>
     </header>
-
-    <main class="row container flex-row">
+<!--container a then row then column??-->
+    <main class="row container d-flex flex-row justify-content-between">
       <div class="col-4">
         <div class="card">
-          <h3 class="card-header">Search for city</h3>
+          <h3 class="card-header">Search for a city:</h3>
           <form class="card-body">
             <input
               type="text"
@@ -31,7 +30,7 @@
               class="form-input col-12"
               placeholder="Enter city name"
             />
-            <button type="submit" id="submit-btn" class="btn col-12">
+            <button type="submit" id="submit-btn" class="btn col-12 my-3 text-light">
               Get City
             </button>
           </form>
@@ -39,7 +38,7 @@
       </div>
       <div class="col-8">
         <div id="weather-card"></div>
-        <div id="forecast-card" class="col-3"></div>
+        <div id="forecast-card" class="col-12, d-flex justify-content-between"></div>
       </div>
     </main>
 
