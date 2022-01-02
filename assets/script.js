@@ -6,7 +6,6 @@ let forecastZone = document.querySelector("#forecast-card");
 submitButtonEl.addEventListener("click", getWeather);
 
 async function getWeather(event) {
-  // why arent you working anymore???
   let weatherContainerEl = document.querySelector(".weather-container");
   if (weatherContainerEl) {
     weatherContainerEl.remove();
@@ -66,7 +65,7 @@ async function getUvi(lon, lat) {
   cardBody.append(cardUvi);
 }
 async function getFiveDay(lon, lat) {
-  // NEED A WAY TO DO THIS THAT WILL ACTUALLY WORK
+  // why aren't you working :(
   let forecastContainerEl = document.querySelector(".forecast-container");
   if (forecastContainerEl) {
     forecastContainerEl.remove();
@@ -78,11 +77,10 @@ async function getFiveDay(lon, lat) {
 
   for (i = 0; i < 5; i++) {
     let iconUrl = `https://openweathermap.org/img/w/${res.daily[i].weather[0].icon}.png`;
-    // NEED A WAY TO MAKE THIS START ON 1 NOT 0 IN ARRAY
-    let dateTitle = res.daily[i].dt * 1000
+    let dateTitle = res.daily[i+1].dt * 1000
 
     const dailyContainer = document.createElement("div");
-    const dailyDate = document.createElement('h4');
+    const dailyDate = document.createElement("h4");
     const dailyBody = document.createElement("div");
     const dailyIcon = document.createElement("img");
     const dailyTemp = document.createElement("p");
@@ -108,4 +106,4 @@ async function getFiveDay(lon, lat) {
   }
 }
 
-// btn-secondary  for previous search buttons 
+ 
