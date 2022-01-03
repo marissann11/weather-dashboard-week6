@@ -18,7 +18,6 @@
     <header class="hero">
       <h1 class="text-light text-center p-3">Weather Dashboard</h1>
     </header>
-<!--container a then row then column??-->
     <main class="row container d-flex flex-row justify-content-between">
       <div class="col-3">
         <div class="card">
@@ -30,15 +29,24 @@
               class="form-input col-12"
               placeholder="Enter city name"
             />
-            <button type="submit" id="submit-btn" class="btn col-12 my-3 text-light">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="btn col-12 my-3 text-light"
+            >
               Get City
             </button>
           </form>
         </div>
       </div>
       <div class="col-9">
-        <div id="weather-card"></div>
-        <div id="forecast-card" class="col-12, d-flex justify-content-between"></div>
+        <div id="weather-card">
+          <span id="uvi"></span>
+        </div>
+        <div
+          id="forecast-card"
+          class="col-12, d-flex justify-content-between mt-3"
+        ></div>
       </div>
     </main>
 
