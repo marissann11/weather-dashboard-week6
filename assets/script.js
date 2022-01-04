@@ -2,6 +2,8 @@ let submitButtonEl = document.querySelector("#submit-btn");
 let cityInput = document.querySelector("#city");
 let cardZone = document.querySelector("#weather-card");
 let forecastZone = document.querySelector("#forecast-card");
+let formZone = document.querySelector("#form-card");
+let searchedCities = [];
 
 submitButtonEl.addEventListener("click", getWeather);
 
@@ -51,7 +53,7 @@ async function getWeather(event) {
 
   getUvi(res.coord.lon, res.coord.lat);
   getFiveDay(res.coord.lon, res.coord.lat);
-  //saveSearch (cityName);
+  saveSearch(cityName);
 }
 async function getUvi(lon, lat) {
   const response = await fetch(
@@ -114,6 +116,37 @@ async function getFiveDay(lon, lat) {
     forecastZone.append(dailyContainer);
   }
 }
+function saveSearch(cityName) {
+  let searchedCities = JSON.parse(localStorage.getItem("cityname"));
+  console.log(searchedCities);
 
-// Local storage
-// Previous search buttons
+  if (searchedCities == null) {
+    searchedCities = [];
+    searchedCities.unshift(cityName);
+    localStorage.setItem("cityname", JSON.stringify(searchedCities));
+  }
+  if (searchedCities.length > 7) {
+    searchedCities.pop();
+  }
+  if (!searchedCities.includes(cityName)) {
+    searchedCities.unshift(cityName);
+    localStorage.setItem("cityname", JSON.stringify(searchedCities));
+  }
+}
+function displayHistory() {
+  let searchedCities = JSON.parse(localStorage.getItem("cityname"));
+
+  if (searchedCities) {
+    for (i = 0; i < searchedCities.length; i++) {
+      const previousBtn = document.createElement("button");
+
+      previousBtn.setAttribute("class", "btn");
+
+      $(".btn").addClass("text-capitalize");
+
+      previousBtn.textContent = searchedCities[i];
+
+      formZone.append(previousBtn);
+    }
+  }
+}
