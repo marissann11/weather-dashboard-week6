@@ -51,8 +51,8 @@ async function getWeather(event) {
 
   getUvi(res.coord.lon, res.coord.lat);
   getFiveDay(res.coord.lon, res.coord.lat);
+  //saveSearch (cityName);
 }
-// Why is this promise not fufilled unless it is the first search done???
 async function getUvi(lon, lat) {
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=d91f911bcf2c0f925fb6535547a5ddc9&units=imperial`
@@ -60,25 +60,20 @@ async function getUvi(lon, lat) {
   const res = await response.json();
 
   const cardUvi = document.createElement("p");
-  const colorUvi = document.querySelector("#uvi");
 
   cardUvi.setAttribute("class", "card-text");
 
-  cardUvi.textContent = `UV Index:`;
-  colorUvi.textContent = res.current.uvi;
-  
-  if (res.current.uvi <= 3) {
-    $("#uvi").addClass("bg-success p-2 text-light");
-  }
-  else if (res.current.uvi > 3 && res.current.uvi < 7) {
-    $("#uvi").addClass("bg-warning p-2 text-light");
-  }
-  else {
-    $("#uvi").addClass("bg-danger p-2 text-light");
-  }
+  cardUvi.innerHTML = `UV Index: <span id="uvi">${res.current.uvi}</span>`;
 
-  let cardBody = document.querySelector("#card-body");
-  cardBody.append(cardUvi, colorUvi);
+  $("#card-body").append(cardUvi);
+
+  if (res.current.uvi <= 3) {
+    $("#uvi").addClass("bg-success p-2 text-light rounded");
+  } else if (res.current.uvi < 7) {
+    $("#uvi").addClass("bg-warning p-2 text-light rounded");
+  } else {
+    $("#uvi").addClass("bg-danger p-2 text-light rounded");
+  }
 }
 async function getFiveDay(lon, lat) {
   if ($(".forecast-container")) {
@@ -91,7 +86,7 @@ async function getFiveDay(lon, lat) {
 
   for (i = 1; i <= 5; i++) {
     let iconUrl = `https://openweathermap.org/img/w/${res.daily[i].weather[0].icon}.png`;
-    let dateTitle = res.daily[i].dt * 1000
+    let dateTitle = res.daily[i].dt * 1000;
 
     const dailyContainer = document.createElement("div");
     const dailyDate = document.createElement("h4");
@@ -110,12 +105,15 @@ async function getFiveDay(lon, lat) {
     dailyHumidity.setAttribute("class", "card-text");
 
     dailyDate.textContent = new Date(dateTitle).toLocaleDateString();
-    dailyTemp.textContent = `Temp: ${res.daily[i].temp.day} °F`
-    dailyWind.textContent = `Wind: ${res.daily[i].wind_speed} MPH`
-    dailyHumidity.textContent = `Humidity: ${res.daily[i].humidity} %`
+    dailyTemp.textContent = `Temp: ${res.daily[i].temp.day} °F`;
+    dailyWind.textContent = `Wind: ${res.daily[i].wind_speed} MPH`;
+    dailyHumidity.textContent = `Humidity: ${res.daily[i].humidity} %`;
 
     dailyContainer.append(dailyBody);
     dailyBody.append(dailyDate, dailyIcon, dailyTemp, dailyWind, dailyHumidity);
     forecastZone.append(dailyContainer);
   }
 }
+
+// Local storage
+// Previous search buttons

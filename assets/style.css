@@ -12,15 +12,3 @@ main {
     background-color: rgb(25,25,112,0.85);
     color:white;
 }
-.favorable {
-    background-color: #66BB6A;
-    padding: 5px;
-}
-.moderate {
-    background-color: #f5f512;
-    padding: 5px;
-}
-.severe {
-    background-color: #DC143C;
-    padding: 5px;
-}
