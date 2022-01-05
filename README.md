@@ -29,4 +29,4 @@ THEN I am again presented with current and future conditions for that city
 https://marissann11.github.io/weather-dashboard-week6/
 
 # Screenshot
-![ScreenShot](./assets/final-screenshot.png?raw=true “Screenshot”)
+![ScreenShot](./assets/final-screenshot.png)
