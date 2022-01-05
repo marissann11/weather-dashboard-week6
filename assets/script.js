@@ -1,5 +1,4 @@
-//$(document).ready(function() {
-
+$(document).ready(function() {
 let submitButtonEl = document.querySelector("#submit-btn");
 let cityInput = document.querySelector("#city");
 let cardZone = document.querySelector("#weather-card");
@@ -172,5 +171,4 @@ function checkHistory() {
 }
 
 displayHistory();
-//});
-
+});
