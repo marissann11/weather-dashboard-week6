@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function() {
 
 let submitButtonEl = document.querySelector("#submit-btn");
 let cityInput = document.querySelector("#city");
@@ -172,5 +172,5 @@ function checkHistory() {
 }
 
 displayHistory();
-});
+//});
 
