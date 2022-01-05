@@ -118,7 +118,6 @@ async function getFiveDay(lon, lat) {
 }
 function saveSearch(cityName) {
   let searchedCities = JSON.parse(localStorage.getItem("cityname"));
-  console.log(searchedCities);
 
   if (searchedCities == null) {
     searchedCities = [];
@@ -141,12 +140,16 @@ function displayHistory() {
       const previousBtn = document.createElement("button");
 
       previousBtn.setAttribute("class", "btn");
-
-      $(".btn").addClass("text-capitalize");
+      previousBtn.setAttribute("id", "previous-btn");
 
       previousBtn.textContent = searchedCities[i];
 
       formZone.append(previousBtn);
     }
+    $("#previous-btn").on("click", function () {
+      let city = document.querySelector("#previous-btn").innerText;
+      console.log(city);
+    });
   }
-}
+};
+$(document).ready(displayHistory);
