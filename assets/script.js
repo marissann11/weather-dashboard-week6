@@ -61,6 +61,7 @@ async function getWeather(cityName) {
   getUvi(res.coord.lon, res.coord.lat);
   getFiveDay(res.coord.lon, res.coord.lat);
   saveSearch(cityName);
+  displayHistory();
 }
 // A separate fetch was needed using the lon and lat coordinates to retrieve the uvi 
 async function getUvi(lon, lat) {
@@ -146,6 +147,9 @@ function saveSearch(cityName) {
   }
 }
 function displayHistory() {
+  if ($(".previous-btn")) {
+    $(".previous-btn").remove();
+  }
   let searchedCities = JSON.parse(localStorage.getItem("cityname"));
 
   if (searchedCities) {
